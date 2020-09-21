@@ -1,14 +1,14 @@
 pipeline { 
     agent any 
     stages {
-        stage('Build') { 
+        stage('SCM') { 
             steps { 
-                echo "Building the Project" 
+                git credentialsId: '1d585c82-b678-45f1-9e3d-fc24f6fb9260', url: 'https://github.com/chandra3211/Jenkins_pipeline.git' 
             }
         }
-        stage('Test'){
+        stage('Build'){
             steps {
-                echo "Test the Project"
+                sh'mvn clean package'
             }
         }
         stage('Deploy') {
